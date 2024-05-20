@@ -3,7 +3,7 @@ import numpy as np
 def dma(x, k):
   y = np.zeros(len(x))
   for i in range(len(x) - k):
-    y[i] = np.sum(x[i:i+k])
+    y[i] = np.mean(x[i:i+k])
   return y
 
 if __name__ == "__main__":
