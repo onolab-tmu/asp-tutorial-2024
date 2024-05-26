@@ -17,7 +17,7 @@ plt.title('IDFT(Real Part)')
 plt.xlabel('Sample')
 plt.ylabel('Amplitude')
 
-
+#虚部をプロット
 plt.subplot(2, 1, 2)
 plt.stem(idft_imag)
 plt.title('IDFT Result (Imaginary Part)')

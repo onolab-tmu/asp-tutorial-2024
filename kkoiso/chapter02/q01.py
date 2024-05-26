@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 def DFT(x):
     N = len(x)
     X = [0] * N
