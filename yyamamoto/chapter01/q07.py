@@ -15,7 +15,7 @@ def SN_rate(s, x):
 
 def add_white_noise(s, sn):
     N = len(s)
-    x = 2 * (np.random.rand(N)) - 1     # ホワイトノイズの作成
+    x = 2 * (np.random.randn(N)) - 1     # ホワイトノイズの作成
 
     sum_s = 0
     sum_x = 0
