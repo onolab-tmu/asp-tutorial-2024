@@ -20,6 +20,14 @@ amplitude_spectrum = 20 * np.log10(np.abs(X))
 # 位相スペクトルの計算
 phase_spectrum = np.angle(X)
 
+#小さい振幅の位相も取っていたため、意味不明な位相スペクトルが出ていたので修正
+for i in range(len(phase_spectrum)):
+
+    if  amplitude_spectrum[i] < 0.001:
+        phase_spectrum[i] = 0
+
+
+
 # 対応する周波数を計算
 frequencies = np.fft.fftfreq(len(X), 1/samp_rate)
 

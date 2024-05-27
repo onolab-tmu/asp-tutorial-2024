@@ -6,7 +6,7 @@ from q01 import DFT,IDFT
 a = 1.0
 freq= 440 
 samp_rate = 16000 
-d = 3  
+d = 0.5
 
 t = np.linspace(0, d, int(samp_rate * d), endpoint=False)
 
