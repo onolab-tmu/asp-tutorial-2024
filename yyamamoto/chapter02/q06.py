@@ -14,16 +14,19 @@ x = A * np.sin(2*np.pi*f*t) # 正弦波の値
 dft_value = np.fft.fft(x)
 A = 20 * np.log10(np.abs(dft_value))
 P = np.rad2deg(np.angle(dft_value))
+for i in range(len(A)):
+    if A[i] < 0:
+        P[i] = 0
 
 freq = fs * np.arange(len(A)) / len(A)
 # グラフの描画
 fig = plt.figure()
 fig.add_subplot(1,2,1)
-plt.plot(freq, A)
+plt.stem(freq, A)
 plt.title('Amplitude spectrum')
 
 fig.add_subplot(1,2,2)
-plt.plot(freq, P)
+plt.stem(freq, P)
 plt.title('Phase Spectrum')
 fig.savefig('q06_graph')
 
