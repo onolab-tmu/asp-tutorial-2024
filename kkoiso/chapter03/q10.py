@@ -12,10 +12,10 @@ H = H[:N]
 plt.figure(figsize=(12, 6))
 
 plt.subplot(2, 1, 1)
-plt.plot(w / (2 * np.pi) * fs, 20 * np.log10(np.abs(H)))
-plt.title("Frequency Response - Recursive (Magnitude)")
+plt.plot(w / (2 * np.pi) * fs, np.abs(H))
+plt.title("Frequency Response - Recursive (Ampliitude)")
 plt.xlabel("Frequency (Hz)")
-plt.ylabel("Magnitude (dB)")
+plt.ylabel("Amplitude (dB)")
 plt.grid(True)
 
 plt.subplot(2, 1, 2)
