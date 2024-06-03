@@ -11,11 +11,11 @@ def diff_equation_n(i, a, b, x):
   x_sum = 0
   for k in range(1, N):
     j = i - k
-    y_sum = np.sum(-a[k] * diff_equation_n(j, a, b, x))
+    y_sum += -a[k] * diff_equation_n(j, a, b, x)
     
   for k in range(M):
     j = i - k
-    x_sum = np.sum(b[k] * x[j])
+    x_sum += (b[k] * x[j])
   return y_sum + x_sum
 
 def diff_equation(a, b, x):

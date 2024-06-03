@@ -7,13 +7,13 @@ from q08 import freqz
 L = 10
 x = np.zeros(L)
 x[0] = 1
-a = [1]
-b = [0.2, 0.2, 0.2, 0.2]
+a = [0]
+b = [0.2, 0.2, 0.2, 0.2, 0.2]
 
 y = diff_equation(a, b, x)
 
 fs = 16000
-N = 4
+N = 400
 f = np.arange(0, 1, 1 / N) * fs
 w = 2 * np.pi * f / fs
 

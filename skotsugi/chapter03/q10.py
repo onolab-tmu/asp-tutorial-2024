@@ -12,7 +12,7 @@ b = [ 0.4 ]
 y = diff_equation(a, b, x)
 
 fs = 16000
-N = 4
+N = 400
 f = np.arange(0, 1, 1 / N) * fs
 w = 2 * np.pi * f / fs
 
@@ -23,6 +23,6 @@ theta = np.angle(result)
 theta[A < 10**-5] = 0
 
 fig, ax = plt.subplots(1, 2)
-ax[0].stem(A)
-ax[1].stem(theta)
+ax[0].plot(A)
+ax[1].plot(theta)
 plt.savefig('./skotsugi/chapter03/q10.png')
