@@ -5,9 +5,10 @@ from q08 import frequency_response
 a = [1, -0.3]
 b = [0.4]
 fs = 16000
-N = 1024
-w, H = frequency_response(a, b, fs, N)
-
+N = 16000
+w, H = frequency_response(a, b, fs)
+w = w[:N]
+H = H[:N]
 plt.figure(figsize=(12, 6))
 
 plt.subplot(2, 1, 1)
