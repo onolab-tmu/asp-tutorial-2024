@@ -19,18 +19,20 @@ stft_matrix = stft(x, L, S, w)
 Amplitude_spectrogram = np.abs(stft_matrix)
 phase_spectrogram = np.angle(stft_matrix)
 
-
+num_frames, num_freq_bins = Amplitude_spectrogram.shape
+time_axis = np.arange(num_frames) * (S / fs)
+freq_axis = np.linspace(0, fs / 2, num_freq_bins)
 plt.figure(figsize=(10, 8))
 
 plt.subplot(2, 1, 1)
 plt.title("Ampliitude Spectrogram")
-plt.pcolormesh(Amplitude_spectrogram.T)
+plt.pcolormesh(time_axis, freq_axis, Amplitude_spectrogram.T)
 plt.ylabel("Frequency")
 plt.xlabel("Frame")
 
 plt.subplot(2, 1, 2)
 plt.title("Phase Spectrogram")
-plt.pcolormesh(phase_spectrogram.T)
+plt.pcolormesh(time_axis, freq_axis, phase_spectrogram.T)
 plt.ylabel("Frequency")
 plt.xlabel("Frame")
 
