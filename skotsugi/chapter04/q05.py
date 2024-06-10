@@ -5,6 +5,6 @@ def ws(S: int, w):
   Q = L / S
 
   
-  s = [np.sum([ w[l - m*S] for m in range(-(Q-1), Q-1) ]) for l in L]
+  s = [np.sum([ w[l - m*S] ** 2 for m in range(-(Q-1), Q-1) ]) for l in L]
 
   return np.array(s)
