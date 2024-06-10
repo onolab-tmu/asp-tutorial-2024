@@ -8,12 +8,17 @@ def zero_padding(L: int, S: int, x):
   # 出力信号長の算出
   N = len(x)
   M = L - S    # > 0
-  A = N + M*2
-  B = int(A / S) + 1 # 条件を満たす最小のSの倍数
-  C = S * B
+  A = N + M
+  B = A // S + 1 # 条件を満たす最小のSの倍数
+  C = S * B + M
 
   # 出力信号
   tilde = np.zeros(C) # 全体をゼロ埋め
   tilde[M:M+N] = x
 
   return tilde
+
+if __name__ == "__main__":
+  x = np.ones(5)
+  print(x)
+  print(zero_padding(4, 3,))

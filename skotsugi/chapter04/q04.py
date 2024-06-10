@@ -10,7 +10,6 @@ def hamming(N: int):
 
 if __name__ == "__main__":
   import matplotlib.pyplot as plt
-  from scipy import signal
   from q03 import stft
   
   L = 1000
@@ -31,9 +30,16 @@ if __name__ == "__main__":
   A = 20*np.log10(np.abs(fl))
   ang = np.angle(fl)
 
-  plt.pcolormesh(t, f, A)
-  plt.colorbar(orientation="vertical")
+  fig, ax = plt.subplots(1, 2)
+
+  ax[0].pcolormesh(t, f, A)
+  ax[0].set_ylabel('Frequency [Hz]')
+  ax[0].set_xlabel('Time [sec]')
+
+  ax[1].pcolormesh(t, f, ang)
+  ax[1].set_ylabel('Frequency [Hz]')
+  ax[1].set_xlabel('Time [sec]')
+
+  # fig.colorbar(orientation="vertical")
   plt.grid()
-  plt.ylabel('Frequency [Hz]')
-  plt.xlabel('Time [sec]')
   plt.savefig('skotsugi/chapter04/q04.png')
