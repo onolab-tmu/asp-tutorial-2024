@@ -18,7 +18,8 @@ def frame(L, S, x):
 # 確認
 x = np.ones(5)
 print(x)
-x_2 = frame(4, 3, x)
+print(zeropad(4, 2, x))
+x_2 = frame(4, 2, x)
 print(x_2)
 
 

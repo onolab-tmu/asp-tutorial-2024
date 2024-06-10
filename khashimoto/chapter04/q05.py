@@ -1,6 +1,7 @@
 # 合成窓
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def window(S, w):
@@ -18,8 +19,10 @@ def window(S, w):
 
 """
 # 確認
-w = np.ones(6)
-print(window(2, w))
+L = 1024
+w = 0.54 - 0.46 * np.cos(2 * np.pi * np.arange(L) / (L - 1))  # Hamming窓
+plt.plot(window(256, w))
+plt.show()
 
 
 # [0.33333333 0.33333333 0.33333333 0.33333333 0.33333333 0.33333333]

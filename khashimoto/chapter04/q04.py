@@ -17,7 +17,7 @@ x_stft = stft(L, S, w, x)
 
 
 # プロット
-T = np.arange(len(x_stft)) * 0.1  # 時間軸
+T = np.arange(len(x_stft))  # 時間軸
 fr = np.arange(x_stft.shape[1]) / x_stft.shape[1] * fs / 2  # 周波数軸
 
 plt.subplot(1, 2, 1)
