@@ -4,7 +4,7 @@ from q03 import stft
 from q04 import Hamming
 
 def convert_unit(X, fs, S):
-    freqs = fs * np.arange(X.shape[1]) / X.shape[1]
+    freqs = fs / 2 * np.arange(X.shape[1]) / X.shape[1]
     T = X.shape[0]
     seconds = np.arange(0, S*T, step=S) / fs
     return freqs, seconds

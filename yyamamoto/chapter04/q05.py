@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 def window(S, w):
     L = len(w)
@@ -14,5 +15,6 @@ def window(S, w):
     return w_s
 
 # 結果の確認
-# w = np.arange(100)
-# print(window(20, w))
+# w = np.ones(6)
+# fig = plt.figure()
+# plt.plot(window(2, w))

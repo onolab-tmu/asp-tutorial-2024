@@ -12,5 +12,5 @@ def split_frame(L, S, x):
     return ans
 
 # 動作確認
-# x = np.arange(16)
-# print(split_frame(5, 3, x))
+# x = np.ones(5)
+# print(split_frame(4, 2, x))
