@@ -5,15 +5,11 @@ import matplotlib.pyplot as plt
 from q03 import stft
 
 
-def fr_convert(x, fs, S):
+def convert(x, fs, S):
     L = (len(x) - 1) * 2
     f = np.arange(len(x)) * fs / L
-    return f
-
-
-def t_convert(x, fs, S):
     t = np.arange(x.shape[1]) * S / fs
-    return t
+    return f, t
 
 
 # ４. の結果を再度プロット
@@ -30,8 +26,7 @@ x_stft = stft(L, S, w, x)
 
 
 # プロット
-fr = fr_convert(x_stft.T, fs, S)
-t = t_convert(x_stft.T, fs, S)
+fr, t = convert(x_stft.T, fs, S)
 
 plt.subplot(1, 2, 1)
 plt.pcolormesh(t, fr, abs(x_stft).T)
