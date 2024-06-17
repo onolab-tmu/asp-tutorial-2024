@@ -12,7 +12,7 @@ x = sin(1, freq, fs, sec)
 w = hamming(L)
 
 X = stft(L, S, w, x)
-x_istft = istft(S, X)
+x_istft = istft(S, w, X)
 
 plt.plot(x_istft)
 plt.grid()
