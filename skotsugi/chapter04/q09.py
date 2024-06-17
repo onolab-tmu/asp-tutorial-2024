@@ -13,23 +13,20 @@ L = 50
 S = 25
 Xs = []
 for i in range(1, 5):
-  L = L * i
-  S = S * i
+  L = L * 2
+  S = S * 2
   w = hamming(L)
   X = stft(L, S, w, x)
   Xs.append(X)
 
-fig, ax = plt.subplots(1, 4)
+fig, ax = plt.subplots(4, 1, sharey=True, sharex=True)
 for i, X in enumerate(Xs):
   A = np.abs(X)
 
   F = X.shape[0]
   T = X.shape[1]
 
-  t_ = (np.arange(T) + 0.5) * sec / T
-  f = np.arange(F) / F * fs / 2
-
-  cb = ax[i].pcolormesh(t_, f, A)
+  cb = ax[i].pcolormesh(A)
 
 plt.tight_layout()
 
