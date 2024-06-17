@@ -1,16 +1,21 @@
 import numpy as np
 
-def sin(A, f, fs, sec):
-  n = np.arange(0, fs*sec) / fs
-  return A * np.sin(2 * np.pi * f * n)
+def to_quantity(X: np.ndarray, fs: int, S: int):
+  F = X.shape[0] # 1フレームあたりの信号長
+  T = X.shape[1] # フレーム数
+  L = 2 * (F - 1)
 
-def hamming(N: int): 
-  n = np.arange(N)
-  return 0.54 - 0.46 * np.cos(2 * np.pi * n / (N - 1))
+  t = np.arange(T) * S / fs
+  f = np.arange(F) * fs / L
+
+  print(t)
+
+  return t, f
 
 if __name__ == "__main__":
   import matplotlib.pyplot as plt
   from q03 import stft
+  from q04 import sin, hamming
   
   L = 1000
   S = 500
@@ -21,13 +26,10 @@ if __name__ == "__main__":
   w = hamming(L)
 
   X = stft(L, S, w, x)
-  F = X.shape[0]
-  T = X.shape[1]
 
-  t = (np.arange(T) + 0.5) * sec / T
-  f = np.arange(F) / F * fs / 2
+  t, f = to_quantity(X, fs, S)
 
-  A = 20*np.log10(np.abs(X))
+  A = 20 * np.log10(np.abs(X))
   ang = np.angle(X)
 
   fig, ax = plt.subplots(1, 2)
@@ -40,8 +42,9 @@ if __name__ == "__main__":
   ax[1].set_ylabel('Frequency [Hz]')
   ax[1].set_xlabel('Time [sec]')
 
-  fig.colorbar(cb, orientation="vertical", ax=ax)
+  plt.tight_layout()
+
+  fig.colorbar(cb, ax=ax)
 
   plt.grid()
-  plt.tight_layout()
-  plt.savefig('skotsugi/chapter04/q04.png')
+  plt.savefig('skotsugi/chapter04/q10.png')
