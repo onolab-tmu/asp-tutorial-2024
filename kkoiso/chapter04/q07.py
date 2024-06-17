@@ -15,7 +15,7 @@ L = 1000
 S = 500
 w = np.hamming(L)
 w_s = synthesis_window(w, S)
-stft_matrix = stft(x, L, S, w)
+stft_matrix = stft(x, L, S, w).T
 x_reconstructed = istft(stft_matrix, S, w)
 plt.figure(figsize=(10, 4))
 
@@ -26,6 +26,6 @@ plt.title("Original Signal")
 plt.subplot(2, 1, 2)
 plt.plot(x_reconstructed)
 plt.title("Reconstructed Signal")
-
+plt.grid(True)
 plt.tight_layout()
 plt.show()

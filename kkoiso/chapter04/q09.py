@@ -15,7 +15,7 @@ plt.figure(figsize=(10, 8))
 for i, (L, S) in enumerate(params):
     w = np.hamming(L)
     stft_matrix = stft(chirp_signal, L, S, w)
-    Amplitude_spectrogram = np.abs(stft_matrix)
+    Amplitude_spectrogram = 2 * np.log(np.abs(stft_matrix))
 
     plt.subplot(len(params), 1, i + 1)
     plt.pcolormesh(Amplitude_spectrogram.T)
