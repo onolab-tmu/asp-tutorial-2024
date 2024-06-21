@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from q05 import window
 
 def Hamming(N):
@@ -19,6 +20,11 @@ def istft(S, X):
         z[:,t] = np.fft.irfft(X[:,t])
     # 手順4
     w = window(S, Hamming(N))
+    # 合成窓をプロットして確認
+    # fig = plt.figure()
+    # plt.plot(w)
+    # fig.savefig("./yyamamoto/chapter04/graph.png")
+
     n = np.arange(N)    # ファンシーインデックス
     for t in range(T):
         x[t*S+n] = x[t*S+n] + w[n] * z[n,t]

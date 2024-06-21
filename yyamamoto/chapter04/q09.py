@@ -24,7 +24,7 @@ for i in range(1, 5):
     A = A.T
     P = P.T
     fig.add_subplot(1, 4, i)
-    plt.pcolormesh(np.log10(np.abs(chirp_stft) ** 2).T)
+    plt.pcolormesh(np.abs(chirp_stft) ** 2).T
     plt.title("L=" + str(L) + ", S=" + str(S))
 
 fig.savefig("./yyamamoto/chapter04/q09_graph.png")
