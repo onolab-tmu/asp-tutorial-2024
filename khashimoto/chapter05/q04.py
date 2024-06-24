@@ -12,10 +12,9 @@ def spatial_correlation_matrix(*X):
         sum = np.zeros((M, M), dtype=complex)
         for t in range(T):
             # a.
-            x_ft = np.zeros((2, M), dtype=complex)
+            x_ft = np.zeros((M, 1), dtype=complex)
             for m in range(M):
                 x_ft[m][0] = X[m][f][t]
-                x_ft[m][1] = 0.0
 
             # b.
             sum = np.add(sum, x_ft @ np.conj(x_ft.T))
