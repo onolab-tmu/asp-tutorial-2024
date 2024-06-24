@@ -12,22 +12,23 @@ def spatial_correlation_matrix(*X):
         sum = np.zeros((M, M), dtype=complex)
         for t in range(T):
             # a.
-            x_ft = np.zeros((M, 1), dtype=complex)
+            x_ft = np.zeros(M, dtype=complex)
             for m in range(M):
-                x_ft[m][0] = X[m][f][t]
+                x_ft[m] = X[m][f][t]
+            x_ft = np.array([x_ft]).T
 
             # b.
             sum = np.add(sum, x_ft @ np.conj(x_ft.T))
         R[f] = sum / T
-    return tuple(R)
+    return R
 
 
 X_1 = np.array([[1, -1j, -1, 1j], [2, -2j, -2, 2j], [3, -3j, -3, 3j]])
 X_2 = np.array([[4, -2j, 1, 0], [2, -1j, 0, 0], [1, -1j, 1, 0]])
-R_0, R_1, R_2 = spatial_correlation_matrix(X_1, X_2)
-print(R_0)
-print(R_1)
-print(R_2)
+R = spatial_correlation_matrix(X_1, X_2)
+print(R[0])
+print(R[1])
+print(R[2])
 
 # # [[1.  +0.j 1.25+0.j]
 #  [1.25+0.j 5.25+0.j]]
