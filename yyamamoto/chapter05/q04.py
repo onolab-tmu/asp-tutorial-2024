@@ -2,16 +2,12 @@ import numpy as np
 
 def correlation_matrix(X):
     M, F, T = X.shape
-    x = np.zeros((F, T, M), dtype=complex)
+    R = np.zeros((F, M, M), dtype=complex)
     for f in range(F):
         for t in range(T):
-            x[f, t] = X[:, f, t].T
-    R = np.zeros((F, M, M), dtype=complex)
-    t = np.arange(T)    # ファンシーインデックス
-    for f in range(F):
-        R[f] = 1 / T * np.sum(np.dot(x[f][t], np.conjugate(x[f][t].T)))
+            x_ft = np.array([X[:, f, t]]).T
+            R[f] += np.dot(x_ft, np.conjugate(x_ft.T))
     return R
-
 
 X1 = np.array([[1, -1j, -1, 1j],
                [2, -2j, -2, 2j],
@@ -25,11 +21,11 @@ print(correlation_matrix(X))
 
 
 # 結果の確認
-# [[[7.25+0.j 7.25+0.j]
-#   [7.25+0.j 7.25+0.j]]
+# [[[ 4.+0.j  5.+0.j]
+#   [ 5.+0.j 21.+0.j]]
 
-#  [[1.25+0.j 1.25+0.j]
-#   [1.25+0.j 1.25+0.j]]
+#  [[16.+0.j  6.+0.j]
+#   [ 6.+0.j  5.+0.j]]
 
-#  [[1.25+0.j 1.25+0.j]
-#   [1.25+0.j 1.25+0.j]]]
+#  [[36.+0.j  3.+0.j]
+#   [ 3.+0.j  3.+0.j]]]

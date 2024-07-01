@@ -39,8 +39,8 @@ fs = 16000  # サンプリング周波数 Hz
 sec = 5       # 信号長 s
 
 t = np.arange(0, sec, 1/fs) # サンプリング点の配列
-white_noise1 = 2 * (np.random.rand(fs*sec)) - 1
-white_noise2 = 2 * (np.random.rand(fs*sec)) - 1
+white_noise1 = 2 * (np.random.normal(size = fs * sec)) - 1
+white_noise2 = 2 * (np.random.normal(size = fs * sec)) - 1
 
 
 L = 512
@@ -53,5 +53,5 @@ X = np.stack([X1, X2])
 print(correlation_matrix(X)[100].real)
 
 # 結果の確認
-# [[0.05582635 0.05582635]
-#  [0.05582635 0.05582635]]
+# [[272642.81798742  60046.86665743]
+#  [ 60046.86665743 228203.33404359]]
