@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import stft
-from q03 import array_manifold_vector_general
 from q04 import spatial_correlation_matrix
 
 
@@ -9,12 +8,13 @@ def compute_spatial_spectrum(z, p, fs):
     F, T, Z = stft(z, fs, window="hann", nperseg=1024, noverlap=512)
     angles = np.linspace(0, 360, 361)
     P = np.zeros((31, len(angles)))
-    fs_2 = fs / 2
-    for f_bin in range(20, 31):
-        R_z = spatial_correlation_matrix(Z[:, f_bin, :])
-        for i, theta in enumerate(angles):
-            w_theta = array_manifold_vector_general(p, theta, f_bin * fs_2 / (F - 1))
-            P[f_bin, i] = np.abs(np.conj(w_theta).dot(R_z).dot(w_theta))
+    R_z = spatial_correlation_matrix(Z)
+    tau = np.array([0, 10 / fs, 20 / fs])
+
+    for i, theta in enumerate(angles):
+        w = 1 / 3 * np.exp(-1j * 2 * np.pi * np.cos(np.deg2rad(theta)) * tau[:, None])
+        for f_bin in range(20, 31):
+            P[f_bin, i] = np.abs(np.conj(w.T).dot(R_z[f_bin]).dot(w))
 
     plt.figure(figsize=(10, 6))
     for f_bin in range(20, 31):
@@ -26,7 +26,6 @@ def compute_spatial_spectrum(z, p, fs):
     plt.show()
 
 
-# サンプル信号の生成
 fs = 16000
 T = 1
 N = fs * T
@@ -47,10 +46,9 @@ x2 = np.roll(s, 10) + epsilon
 x3 = np.roll(s, 20) + epsilon
 x = np.array([x1, x2, x3])
 
-# マイクロホン配置
+
 d = 0.05
 M = 3
 linear_coords = [(m * d, 0) for m in range(M)]
 
-# 空間スペクトルの計算
 compute_spatial_spectrum(x, linear_coords, fs)
