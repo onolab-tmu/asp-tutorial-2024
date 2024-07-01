@@ -27,8 +27,6 @@ M = 3
 theta = 45
 F = 1000
 linear_coords = [((m - 1) * d, 0) for m in range(M)]
-
-
 fs = 16000
 
 

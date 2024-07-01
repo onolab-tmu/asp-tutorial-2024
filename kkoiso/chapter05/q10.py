@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import stft
 from q04 import spatial_correlation_matrix
+from q01 import array_manifold_vector_linear
 
 
 def compute_spatial_spectrum(z, p, fs):
@@ -12,7 +13,7 @@ def compute_spatial_spectrum(z, p, fs):
     tau = np.array([0, 10 / fs, 20 / fs])
 
     for i, theta in enumerate(angles):
-        w = 1 / 3 * np.exp(-1j * 2 * np.pi * np.cos(np.deg2rad(theta)) * tau[:, None])
+        w = 1 / 3 * np.exp(-1j * 2 * np.pi * theta * tau)
         for f_bin in range(20, 31):
             P[f_bin, i] = np.abs(np.conj(w.T).dot(R_z[f_bin]).dot(w))
 

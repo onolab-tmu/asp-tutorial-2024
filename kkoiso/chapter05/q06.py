@@ -23,7 +23,7 @@ x1 = s + epsilon
 x2 = np.roll(s, 10) + epsilon
 x3 = np.roll(s, 20) + epsilon
 
-x = (x1 + x2 + x3) / 3
+x = x1 + x2 + x3
 plt.figure(figsize=(10, 6))
 plt.plot(t[: int(0.01 * fs)], x[: int(0.01 * fs)])
 plt.xlabel("Time [s]")
