@@ -7,20 +7,21 @@ from q07 import F
 def beam_pattern(w: np.ndarray, p: np.ndarray, fs):
     F, M = w.shape
 
-    theta = np.arange(360) * np.pi / 180.0
+    angle = np.arange(360)
+    theta = angle * np.pi / 180.0
     freq = np.arange(F) * fs / 2 / (F - 1)
 
     Phi = np.zeros((F, 360), dtype=complex)
 
     for i, f in enumerate(freq):
         for j, th in enumerate(theta):
-            a = np.array([array_manifold_vector(p, th, f)]).T
-            w_f = np.array([w[i]]).T
+            a = array_manifold_vector(p, th, f)
+            w_f = w[i]
 
-            Phi[i, j] = (w_f.T @ a)[0, 0]
+            Phi[i, j] = w_f.T @ a
 
     A = 20 * np.log10(np.abs(Phi))
-    return A
+    return angle, freq, A
 
 
 if __name__ == "__main__":
@@ -29,15 +30,14 @@ if __name__ == "__main__":
     M = 3
     c = 334
 
-    # ステアリングベクトル
-    w = np.zeros((F, M), dtype=complex)
-    tau = (np.arange(M) - (M - 1) / 2) * d / c / fs
-    for f in range(F):
-        w[f, :] = np.exp(-1j * 2 * np.pi * f * tau) / M
-
     # 直線状アレイ
     p = np.array([[-d, 0, 0], [0, 0, 0], [d, 0, 0]])
 
-    A = beam_pattern(w, p, fs)
-    plt.imshow(A)
+    # ステアリングベクトル
+    w = np.zeros((F, M), dtype=complex)
+    for f in range(F):
+        a_w = array_manifold_vector(p, 0, f)
+        w[f, :] = np.conj(a_w) / M
+
+    plt.pcolormesh(*beam_pattern(w, p, fs))
     plt.savefig("./skotsugi/chapter05/q08.png")

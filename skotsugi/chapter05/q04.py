@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def spatial_correlation_matrix(X_m: np.ndarray):
+def spatial_correlation_matrix(X_m: np.ndarray) -> np.ndarray:
     M, F, T = X_m.shape
     R = np.zeros((F, M, M), dtype=complex)
 
@@ -9,7 +9,7 @@ def spatial_correlation_matrix(X_m: np.ndarray):
         sum_x = np.zeros((M, M), dtype=complex)
         for t in range(T):
             x_ft = np.array([X_m[:, f, t]]).T
-            sum_x += x_ft @ np.conjugate(x_ft.T)
+            sum_x += x_ft @ np.conj(x_ft.T)
 
         R[f] = sum_x / T
 
